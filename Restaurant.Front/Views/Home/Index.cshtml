@@ -1,8 +1,18 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IndexViewModel;
+
+@section CSS {
+    <link rel="stylesheet" href="~/css/Home/index.css" />
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Scripts {
+    <script type="module" src="~/js/home/index.js"></script>
+}
+
+<div class="index">
+    <div class="title">
+        <h1 class="header">Lunchpad</h1>
+    </div>
+    <div class="button-1">
+        <a class="button" href="/home/login">Login</a>
+    </div>
 </div>

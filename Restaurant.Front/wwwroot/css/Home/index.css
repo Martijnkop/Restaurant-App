@@ -1,0 +1,37 @@
+﻿.index {
+    text-align: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.header {
+    position: relative;
+    margin-top: 2rem;
+    font-size: 5rem;
+    flex: 50%;
+    font-family: 'Nunito', sans-serif;
+}
+
+.button-1 {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 100%;
+    align-items: center;
+}
+
+.button {
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-radius: 3rem;
+    left: 30%;
+    background-color: var(--resButton);
+    color: white;
+    font-size: 3rem;
+    font-family: 'Nunito', sans-serif;
+}

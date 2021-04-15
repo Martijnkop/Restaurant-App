@@ -355,3 +355,10 @@ C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaur
 C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\obj\Debug\net5.0\ref\Restaurant.Front.dll
 C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\obj\Debug\net5.0\Restaurant.Front.pdb
 C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\obj\Debug\net5.0\Restaurant.Front.genruntimeconfig.cache
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\bin\Debug\net5.0\System.Net.WebSockets.WebSocketProtocol.dll
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\bin\Debug\net5.0\Restaurant.Logic.dll
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\bin\Debug\net5.0\Restaurant.Logic.pdb
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\obj\Debug\net5.0\Razor\Views\Shared\_Footer.cshtml.g.cs
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\obj\Debug\net5.0\Razor\Views\Shared\_Header.cshtml.g.cs
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\bin\Debug\net5.0\libman.json
