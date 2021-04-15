@@ -1,0 +1,24 @@
+﻿@model AdminHomeModel;
+
+@section CSS {
+    <link rel="stylesheet" href="~/css/admin/index.css" />
+}
+
+@section Scripts {
+    <script type="module" src="~/js/admin/index.js"></script>
+}
+
+<div class="admin-home" id="admin-home">
+    <div class="display-options">
+        <button class="dishes" id="dishButton">Show Dishes</button>
+        <button class="ingredients" id="ingredientButton">Show Ingredients</button>
+    </div>
+
+    <h2 class="pickedlist dish" id="pickedList">Dishes</h2>
+    <div class="list" id="list">
+    </div>
+    <div class="other-options">
+        <button class="create" id="create">Create Dish</button>
+    </div>
+
+</div>

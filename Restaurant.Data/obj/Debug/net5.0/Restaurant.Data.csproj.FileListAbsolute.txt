@@ -1,0 +1,12 @@
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\obj\Debug\net5.0\Restaurant.Data.csprojAssemblyReference.cache
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\obj\Debug\net5.0\Restaurant.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\obj\Debug\net5.0\Restaurant.Data.AssemblyInfoInputs.cache
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\obj\Debug\net5.0\Restaurant.Data.AssemblyInfo.cs
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\obj\Debug\net5.0\Restaurant.Data.csproj.CoreCompileInputs.cache
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\bin\Debug\net5.0\Restaurant.Data.deps.json
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\bin\Debug\net5.0\Restaurant.Data.dll
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\bin\Debug\net5.0\ref\Restaurant.Data.dll
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\bin\Debug\net5.0\Restaurant.Data.pdb
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\obj\Debug\net5.0\Restaurant.Data.dll
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\obj\Debug\net5.0\ref\Restaurant.Data.dll
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Data\obj\Debug\net5.0\Restaurant.Data.pdb

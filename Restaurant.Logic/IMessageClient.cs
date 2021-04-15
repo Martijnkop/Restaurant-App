@@ -1,4 +1,5 @@
-﻿using Restaurant.Logic.SiteLayout;
+﻿using Restaurant.Logic.ingredient.models;
+using Restaurant.Logic.SiteLayout;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace Restaurant.Logic
     {
         Task ReturnConnected();
         Task SendMenuItems(List<MenuItem> items);
+        Task SendAllIngredients(List<IngredientModel> ingredients);
+        Task SendAllDishes(bool a);
     }
 }

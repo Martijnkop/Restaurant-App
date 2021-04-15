@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Restaurant.Logic.ingredient;
 using Restaurant.Logic.SiteLayout;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -59,5 +60,23 @@ namespace Restaurant.Logic
         }
 
         public async Task TestConnection() => await Clients.Caller.ReturnConnected();
+
+        public Task AddIngredient(string name, int diet)
+        {
+            new IngredientLogic().Add(name, diet);
+            GetAllIngredients();
+            return Task.CompletedTask;
+        }
+
+        public Task RemoveIngredient(string name)
+        {
+            new IngredientLogic().Remove(name);
+            GetAllIngredients();
+            return Task.CompletedTask;
+        }
+
+        public async Task GetAllIngredients() => await Clients.Caller.SendAllIngredients(new IngredientLogic().GetAll());
+
+        public async Task GetAllDishes() => await Clients.Caller.SendAllDishes(false);
     }
 }
