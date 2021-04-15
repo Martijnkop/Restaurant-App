@@ -1,3 +1,5 @@
 *.map
 *.cache
 *.suo
+*.dll
+*.pdb
