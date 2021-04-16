@@ -1,6 +1,12 @@
 ﻿var valid = false
 
-function createPopup(currentlyShowing, conn) {
+var isNewItem = true
+
+var itemDiet
+
+function popup(isNew, currentlyShowing, conn, name, diet) {
+    isNewItem = isNew
+    itemDiet = diet
 
     var popup = document.createElement("div")
     popup.id = "popup"
@@ -16,7 +22,8 @@ function createPopup(currentlyShowing, conn) {
     top.classList = "top"
 
     var popupHeader = document.createElement("h2")
-    popupHeader.innerText = "Create new " + currentlyShowing
+    if (isNew) popupHeader.innerText = "Create new " + currentlyShowing;
+    else popupHeader.innerText = "Edit " + currentlyShowing + " " + name;
 
     top.appendChild(popupHeader)
 
@@ -34,23 +41,22 @@ function createPopup(currentlyShowing, conn) {
         var html =
             `
         <p class="name">Name:</p>
-        <input class="namebox" id="name">
-        <p class="namewarning" id="namewarning">Name can't be empty!</p>
+        ` + getNameBox(name) + `
         
         <p class="diet">Diet:</p>
         <div class="dietInput">
             <label class="box">Vegan
-                <input type="radio" checked="checked" id="vegan" name="dietPicker">
+                <input type="radio" ` + getDietEnabled(2) + `id="vegan" name="dietPicker">
                 <span class="checkmark"></span>
             </label>
 
             <label class="box">Vegetarian
-                <input type="radio" id="vegetarian" name="dietPicker">
+                <input type="radio" `+ getDietEnabled(1) + `id="vegetarian" name="dietPicker">
                 <span class="checkmark"></span>
             </label>
 
             <label class="box">Meat
-                <input type="radio" id="meat" name="dietPicker">
+                <input type="radio" `+ getDietEnabled(0) + `id="meat" name="dietPicker">
                 <span class="checkmark"></span>
             </label>
         </div>
@@ -59,7 +65,6 @@ function createPopup(currentlyShowing, conn) {
 
         popupMain.innerHTML += html
     }
-
 
     var btn = document.createElement("input")
     btn.type = "button"
@@ -73,7 +78,7 @@ function createPopup(currentlyShowing, conn) {
 
     document.getElementById("admin-home").append(popup)
     createCancelListener()
-    createConfirmListener(conn)
+    createConfirmListener(isNew, conn, name)
     nameListener()
 }
 
@@ -85,7 +90,7 @@ function createCancelListener() {
     })
 }
 
-function createConfirmListener(conn) {
+function createConfirmListener(isNew, conn, oldName) {
     document.getElementById("confirm").addEventListener("click", function () {
         console.log("test")
         if (!valid) return;
@@ -95,7 +100,8 @@ function createConfirmListener(conn) {
         else if (document.getElementById("vegetarian").checked === true) vegan = 1
         else vegan = 2
 
-        conn.invoke("AddIngredient", name, vegan).catch(function (err) { })
+        if (isNew) conn.invoke("AddIngredient", name, vegan).catch(function (err) { });
+        else conn.invoke("EditIngredient", oldName, name, vegan).catch(function (err) { });
     })
 }
 
@@ -113,4 +119,16 @@ function nameListener() {
     })
 }
 
-export { createPopup };
+function getDietEnabled(num) {
+    if (itemDiet === num || (isNewItem && num === 2)) return `checked="checked"`;
+    return "";
+}
+
+function getNameBox(name) {
+    if (name === null) return `<input class="namebox" id="name">
+        <p class="namewarning" id="namewarning">Name can't be empty!</p>`;
+    else return `<input class="namebox" id="name" value="` + name + `">
+        <p class="namewarning" id="namewarning"></p>`;
+}
+
+export { popup };

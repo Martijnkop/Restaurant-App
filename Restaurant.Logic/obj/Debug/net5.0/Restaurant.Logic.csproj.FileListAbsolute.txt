@@ -13,3 +13,7 @@ C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaur
 C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Logic\bin\Debug\net5.0\Restaurant.Data.dll
 C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Logic\bin\Debug\net5.0\Restaurant.Data.pdb
 C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Logic\obj\Debug\net5.0\Restaurant.Logic.csproj.CopyComplete
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Logic\bin\Debug\net5.0\Restaurant.Factory.dll
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Logic\bin\Debug\net5.0\Restaurant.Interface.dll
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Logic\bin\Debug\net5.0\Restaurant.Factory.pdb
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Logic\bin\Debug\net5.0\Restaurant.Interface.pdb

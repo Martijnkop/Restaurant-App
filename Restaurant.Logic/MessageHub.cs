@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Restaurant.Logic.ingredient;
+using Restaurant.Logic.ingredient.models;
 using Restaurant.Logic.SiteLayout;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Restaurant.Logic
@@ -14,17 +14,23 @@ namespace Restaurant.Logic
 
         public async Task AddIngredient(string name, int diet)
         {
-            new IngredientLogic().Add(name, diet);
+            new Ingredient { Name = name, Diet = diet }.Add();
+            await GetAllIngredients();
+        }
+
+        public async Task EditIngredient(string oldName, string name, int diet)
+        {
+            new Ingredient { Name = name, Diet = diet }.Update(oldName);
             await GetAllIngredients();
         }
 
         public async Task RemoveIngredient(string name)
         {
-            new IngredientLogic().Remove(name);
+            new Ingredient { Name = name }.Remove();
             await GetAllIngredients();
         }
  
-        public async Task GetAllIngredients() => await Clients.Caller.SendAllIngredients(new IngredientLogic().GetAll());
+        public async Task GetAllIngredients() => await Clients.Caller.SendAllIngredients(new IngredientContainer().GetAll());
 
         // TODO
         public async Task GetAllDishes() => await Clients.Caller.SendAllDishes(false);

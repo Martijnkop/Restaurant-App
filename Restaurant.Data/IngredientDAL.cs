@@ -1,5 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using Restaurant.Data.Models;
+using Restaurant.Interface.ingredient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Data
 {
-    public class DBIngredient
+    public class IngredientDAL : IIngredientDAL, IIngredientContainerDAL
     {
-        public static bool Add(string name, int diet)
+        public bool Add(string name, int diet)
         {
             DBConnection conn = new();
             if (conn.Open())
@@ -33,7 +33,7 @@ namespace Restaurant.Data
             return false;
         }
 
-        public static bool Remove(string name)
+        public bool Remove(string name)
         {
             DBConnection conn = new();
 
@@ -50,7 +50,24 @@ namespace Restaurant.Data
             return false;
         }
 
-        public static DatabaseIngredient Get(string name)
+        public bool Update(string oldName, string newName, int newDiet)
+        {
+            DBConnection conn = new();
+
+            if (conn.Open())
+            {
+                string removeIngredient =
+                    $"UPDATE ingredient SET NAME='{newName}', DIET='{newDiet}' WHERE NAME='{oldName}'";
+
+                conn.RunCommand(removeIngredient);
+                conn.Close();
+                return true;
+            }
+
+            return false;
+        }
+
+        public IngredientDTO FindByName(string name)
         {
             DBConnection conn = new();
 
@@ -68,19 +85,19 @@ namespace Restaurant.Data
                         int id = int.Parse(reader.GetString(0));
                         byte diet = byte.Parse(reader.GetString(2));
 
-                        return new DatabaseIngredient { Id = id, Name = name, Diet = diet };
+                        return new IngredientDTO { Id = id, Name = name, Diet = diet };
                     }
                 }
             }
 
-            return null;
+            return new IngredientDTO();
         }
 
-        public static List<DatabaseIngredient> GetAll()
+        public List<IngredientDTO> GetAll()
         {
             DBConnection conn = new();
 
-            List<DatabaseIngredient> ingredients = new();
+            List<IngredientDTO> ingredients = new();
 
             if (conn.Open())
             {
@@ -98,7 +115,7 @@ namespace Restaurant.Data
                         string name = reader.GetString(1);
                         byte diet = byte.Parse(reader.GetString(2));
 
-                        ingredients.Add(new DatabaseIngredient { Id = id, Name = name, Diet = diet });
+                        ingredients.Add(new IngredientDTO { Id = id, Name = name, Diet = diet });
                     }
                 }
             }

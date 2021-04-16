@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 import connection from "../connection.js";
-import { createPopup } from "./index/createPopup.js";
+import { popup } from "./index/popup.js";
 
 var currentlyShowing = "dish"
 
@@ -58,7 +58,7 @@ connection.on("SendAllIngredients", function (ingredients) {
         div.appendChild(remove)
 
         document.getElementById("list").appendChild(div)
-        //addEditListener(edit.id)
+        addEditListener(edit.id, ingredient.diet)
         addRemoveListener(remove.id)
     })
 })
@@ -81,20 +81,19 @@ document.getElementById("ingredientButton").addEventListener("click", function (
 })
 
 document.getElementById("create").addEventListener("click", function () {
-    createPopup(currentlyShowing, connection)
+    popup(true, currentlyShowing, connection)
 })
 
-// function addEditListener(id) {
-//     var edit = document.getElementById("list").getElementById(id)
-//     edit.addEventListener("click", function(e) {
-
-//     })
-// }
+function addEditListener(id, diet) {
+    var edit = document.getElementById(id)
+    edit.addEventListener("click", function (e) {
+        popup(false, currentlyShowing, connection, id.substring(16), diet)
+    })
+}
 
 function addRemoveListener(id) {
     var remove = document.getElementById(id)
     remove.addEventListener("click", function (e) {
-        console.log(id.substring(18))
         connection.invoke("RemoveIngredient", id.substring(18))
     })
 }

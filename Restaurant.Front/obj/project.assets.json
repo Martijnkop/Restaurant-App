@@ -1064,7 +1064,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "MySql.Data": "8.0.23"
+          "MySql.Data": "8.0.23",
+          "Restaurant.Interface": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Restaurant.Data.dll": {}
@@ -1073,12 +1074,37 @@
           "bin/placeholder/Restaurant.Data.dll": {}
         }
       },
+      "Restaurant.Factory/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Restaurant.Data": "1.0.0",
+          "Restaurant.Interface": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Restaurant.Factory.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Restaurant.Factory.dll": {}
+        }
+      },
+      "Restaurant.Interface/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Restaurant.Interface.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Restaurant.Interface.dll": {}
+        }
+      },
       "Restaurant.Logic/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Microsoft.AspNetCore.SignalR": "1.1.0",
-          "Restaurant.Data": "1.0.0"
+          "Restaurant.Factory": "1.0.0",
+          "Restaurant.Interface": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Restaurant.Logic.dll": {}
@@ -3194,6 +3220,16 @@
       "path": "../Restaurant.Data/Restaurant.Data.csproj",
       "msbuildProject": "../Restaurant.Data/Restaurant.Data.csproj"
     },
+    "Restaurant.Factory/1.0.0": {
+      "type": "project",
+      "path": "../Restaurant.Factory/Restaurant.Factory.csproj",
+      "msbuildProject": "../Restaurant.Factory/Restaurant.Factory.csproj"
+    },
+    "Restaurant.Interface/1.0.0": {
+      "type": "project",
+      "path": "../Restaurant.Interface/Restaurant.Interface.csproj",
+      "msbuildProject": "../Restaurant.Interface/Restaurant.Interface.csproj"
+    },
     "Restaurant.Logic/1.0.0": {
       "type": "project",
       "path": "../Restaurant.Logic/Restaurant.Logic.csproj",
@@ -3277,7 +3313,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

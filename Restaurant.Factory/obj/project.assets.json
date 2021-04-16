@@ -288,6 +288,20 @@
           }
         }
       },
+      "Restaurant.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "MySql.Data": "8.0.23",
+          "Restaurant.Interface": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Restaurant.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Restaurant.Data.dll": {}
+        }
+      },
       "Restaurant.Interface/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -893,6 +907,11 @@
         "version.txt"
       ]
     },
+    "Restaurant.Data/1.0.0": {
+      "type": "project",
+      "path": "../Restaurant.Data/Restaurant.Data.csproj",
+      "msbuildProject": "../Restaurant.Data/Restaurant.Data.csproj"
+    },
     "Restaurant.Interface/1.0.0": {
       "type": "project",
       "path": "../Restaurant.Interface/Restaurant.Interface.csproj",
@@ -901,7 +920,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "MySql.Data >= 8.0.23",
+      "Restaurant.Data >= 1.0.0",
       "Restaurant.Interface >= 1.0.0"
     ]
   },
@@ -911,11 +930,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Data\\Restaurant.Data.csproj",
-      "projectName": "Restaurant.Data",
-      "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Data\\Restaurant.Data.csproj",
+      "projectUniqueName": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Factory\\Restaurant.Factory.csproj",
+      "projectName": "Restaurant.Factory",
+      "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Factory\\Restaurant.Factory.csproj",
       "packagesPath": "C:\\Users\\marti\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Data\\obj\\",
+      "outputPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Factory\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -932,6 +951,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Data\\Restaurant.Data.csproj": {
+              "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Data\\Restaurant.Data.csproj"
+            },
             "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj": {
               "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj"
             }
@@ -947,12 +969,6 @@
     "frameworks": {
       "net5.0": {
         "targetAlias": "net5.0",
-        "dependencies": {
-          "MySql.Data": {
-            "target": "Package",
-            "version": "[8.0.23, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",

@@ -6,13 +6,13 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "Restaurant.Data/1.0.0": {
+      "Restaurant.Factory/1.0.0": {
         "dependencies": {
-          "MySql.Data": "8.0.23",
+          "Restaurant.Data": "1.0.0",
           "Restaurant.Interface": "1.0.0"
         },
         "runtime": {
-          "Restaurant.Data.dll": {}
+          "Restaurant.Factory.dll": {}
         }
       },
       "BouncyCastle.NetCore/1.8.5": {
@@ -233,6 +233,15 @@
           }
         }
       },
+      "Restaurant.Data/1.0.0": {
+        "dependencies": {
+          "MySql.Data": "8.0.23",
+          "Restaurant.Interface": "1.0.0"
+        },
+        "runtime": {
+          "Restaurant.Data.dll": {}
+        }
+      },
       "Restaurant.Interface/1.0.0": {
         "runtime": {
           "Restaurant.Interface.dll": {}
@@ -241,7 +250,7 @@
     }
   },
   "libraries": {
-    "Restaurant.Data/1.0.0": {
+    "Restaurant.Factory/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -385,6 +394,11 @@
       "sha512": "sha512-CeWTdRNfRaSh0pm2gDTJFwVaXfTq6Xwv/sA887iwPTneW7oMtMlpvDIO+U60+3GWTB7Aom6oQwv5VZVUhQRdPQ==",
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
+    },
+    "Restaurant.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Restaurant.Interface/1.0.0": {
       "type": "project",

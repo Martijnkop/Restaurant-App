@@ -27,7 +27,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj": {
+                "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -60,7 +64,68 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Factory\\Restaurant.Factory.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Factory\\Restaurant.Factory.csproj",
+        "projectName": "Restaurant.Factory",
+        "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Factory\\Restaurant.Factory.csproj",
+        "packagesPath": "C:\\Users\\marti\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Factory\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Data\\Restaurant.Data.csproj": {
+                "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Data\\Restaurant.Data.csproj"
+              },
+              "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj": {
+                "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -131,7 +196,61 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj",
+        "projectName": "Restaurant.Interface",
+        "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj",
+        "packagesPath": "C:\\Users\\marti\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -159,8 +278,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Data\\Restaurant.Data.csproj": {
-                "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Data\\Restaurant.Data.csproj"
+              "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Factory\\Restaurant.Factory.csproj": {
+                "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Factory\\Restaurant.Factory.csproj"
+              },
+              "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj": {
+                "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj"
               }
             }
           }
@@ -195,7 +317,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

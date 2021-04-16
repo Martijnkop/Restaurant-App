@@ -9,7 +9,8 @@
       "Restaurant.Logic/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.SignalR": "1.1.0",
-          "Restaurant.Data": "1.0.0"
+          "Restaurant.Factory": "1.0.0",
+          "Restaurant.Interface": "1.0.0"
         },
         "runtime": {
           "Restaurant.Logic.dll": {}
@@ -686,10 +687,25 @@
       },
       "Restaurant.Data/1.0.0": {
         "dependencies": {
-          "MySql.Data": "8.0.23"
+          "MySql.Data": "8.0.23",
+          "Restaurant.Interface": "1.0.0"
         },
         "runtime": {
           "Restaurant.Data.dll": {}
+        }
+      },
+      "Restaurant.Factory/1.0.0": {
+        "dependencies": {
+          "Restaurant.Data": "1.0.0",
+          "Restaurant.Interface": "1.0.0"
+        },
+        "runtime": {
+          "Restaurant.Factory.dll": {}
+        }
+      },
+      "Restaurant.Interface/1.0.0": {
+        "runtime": {
+          "Restaurant.Interface.dll": {}
         }
       }
     }
@@ -1156,6 +1172,16 @@
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
     },
     "Restaurant.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Restaurant.Factory/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Restaurant.Interface/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

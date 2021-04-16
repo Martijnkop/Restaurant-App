@@ -853,13 +853,38 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "MySql.Data": "8.0.23"
+          "MySql.Data": "8.0.23",
+          "Restaurant.Interface": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Restaurant.Data.dll": {}
         },
         "runtime": {
           "bin/placeholder/Restaurant.Data.dll": {}
+        }
+      },
+      "Restaurant.Factory/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Restaurant.Data": "1.0.0",
+          "Restaurant.Interface": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Restaurant.Factory.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Restaurant.Factory.dll": {}
+        }
+      },
+      "Restaurant.Interface/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Restaurant.Interface.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Restaurant.Interface.dll": {}
         }
       }
     }
@@ -2611,12 +2636,23 @@
       "type": "project",
       "path": "../Restaurant.Data/Restaurant.Data.csproj",
       "msbuildProject": "../Restaurant.Data/Restaurant.Data.csproj"
+    },
+    "Restaurant.Factory/1.0.0": {
+      "type": "project",
+      "path": "../Restaurant.Factory/Restaurant.Factory.csproj",
+      "msbuildProject": "../Restaurant.Factory/Restaurant.Factory.csproj"
+    },
+    "Restaurant.Interface/1.0.0": {
+      "type": "project",
+      "path": "../Restaurant.Interface/Restaurant.Interface.csproj",
+      "msbuildProject": "../Restaurant.Interface/Restaurant.Interface.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "Microsoft.AspNetCore.SignalR >= 1.1.0",
-      "Restaurant.Data >= 1.0.0"
+      "Restaurant.Factory >= 1.0.0",
+      "Restaurant.Interface >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2646,8 +2682,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Data\\Restaurant.Data.csproj": {
-              "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Data\\Restaurant.Data.csproj"
+            "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Factory\\Restaurant.Factory.csproj": {
+              "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Factory\\Restaurant.Factory.csproj"
+            },
+            "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj": {
+              "projectPath": "C:\\Users\\marti\\OneDrive - Office 365 Fontys\\ICT\\S2.2\\Individueel\\Project\\Restaurant-App\\Restaurant-App\\Restaurant.Interface\\Restaurant.Interface.csproj"
             }
           }
         }
@@ -2682,7 +2721,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

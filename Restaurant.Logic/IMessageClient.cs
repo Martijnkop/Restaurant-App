@@ -12,7 +12,7 @@ namespace Restaurant.Logic
     {
         Task ReturnConnected();
         Task SendMenuItems(List<MenuItem> items);
-        Task SendAllIngredients(List<IngredientModel> ingredients);
+        Task SendAllIngredients(List<Ingredient> ingredients);
         Task SendAllDishes(bool a);
     }
 }
