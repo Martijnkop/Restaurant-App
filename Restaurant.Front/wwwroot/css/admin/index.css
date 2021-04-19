@@ -23,18 +23,18 @@
     margin-bottom: 10px;
 }
 
-    .display-options button:hover,
-    .create:hover {
-        background-color: #fff;
-        color: #000;
-    }
+.display-options button:hover,
+.create:hover {
+    background-color: #fff;
+    color: #000;
+}
 
 .list {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.ingredients .list-element {
+.list-element {
     background-color: #eee;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -43,32 +43,34 @@
     width: 100%;
 }
 
-    .ingredients .list-element .name,
-    .ingredients .list-element .diet {
-        font-size: 20px;
-        padding-top: 8px;
-        padding-left: 20px;
-        font-family: 'Nunito', sans-serif;
-        padding-bottom: 8px;
-        margin-block: 0;
-        flex: 20%;
-    }
+.list-element .name,
+.ingredients .list-element .diet,
+.dishes .list-element .price {
+    font-size: 20px;
+    padding-top: 8px;
+    padding-left: 20px;
+    font-family: 'Nunito', sans-serif;
+    padding-bottom: 8px;
+    margin-block: 0;
+    flex: 20%;
+}
 
-    .ingredients .list-element .diet {
-        flex: 65%;
-    }
+.ingredients .list-element .diet,
+.dishes .list-element .price {
+    flex: 65%;
+}
 
-    .ingredients .list-element .trash,
-    .ingredients .list-element .edit {
-        margin-left: 10px;
-        padding-top: 14px;
-        flex: 15%;
-        font-size: 20px;
-        text-align: center;
-        background-color: #ddd;
-        border-radius: 10px;
-        cursor: pointer;
-    }
+.list-element .trash,
+.list-element .edit {
+    margin-left: 10px;
+    padding-top: 14px;
+    flex: 15%;
+    font-size: 20px;
+    text-align: center;
+    background-color: #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
 .pickedlist {
     font-family: 'Nunito', sans-serif;
@@ -134,19 +136,19 @@
     margin-left: 20px;
 }
 
-    .dietInput .box {
-        flex: 33%;
-        display: block;
-        position: relative;
-        cursor: pointer;
-        padding-left: 35px;
-    }
+.dietInput .box {
+    flex: 33%;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    padding-left: 35px;
+}
 
-    .dietInput input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-    }
+.dietInput input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
 
 .checkmark {
     position: absolute;
@@ -158,11 +160,11 @@
     border-radius: 50%;
 }
 
-.box:hover input ~ .checkmark {
+.box:hover input~.checkmark {
     background-color: #aaa;
 }
 
-.box input:checked ~ .checkmark {
+.box input:checked~.checkmark {
     background-color: var(--resButton);
 }
 
@@ -172,7 +174,7 @@
     display: none;
 }
 
-.box input:checked ~ .checkmark:after {
+.box input:checked~.checkmark:after {
     display: block;
 }
 

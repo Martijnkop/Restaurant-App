@@ -73,6 +73,32 @@ connection.on("SendAllDishes", function (dishes) {
 
     dishes.forEach(dish => {
         console.log(dish)
+        var div = document.createElement("div")
+        div.classList = "list-element"
+        div.id = "dish_" + dish.name
+
+        var name = document.createElement("p")
+        name.innerText = dish.name
+
+        name.classList.add("name")
+        div.appendChild(name)
+
+        var price = document.createElement("p")
+        price.innerText += dish.price
+        price.classList.add("price")
+        div.appendChild(price)
+
+        var edit = document.createElement("i")
+        edit.classList = "edit fas fa-edit"
+        edit.id = "edit_" + div.id
+        div.appendChild(edit)
+
+        var remove = document.createElement("i")
+        remove.classList = "trash fas fa-trash-alt"
+        remove.id = "remove_" + div.id
+        div.appendChild(remove)
+
+        document.getElementById("list").appendChild(div)
     })
 })
 
