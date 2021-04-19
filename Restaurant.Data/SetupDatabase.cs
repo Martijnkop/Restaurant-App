@@ -26,7 +26,8 @@ namespace Restaurant.Data
                 string createDishTable =
                     "CREATE TABLE IF NOT EXISTS dish (" +
                         "id INT AUTO_INCREMENT PRIMARY KEY," +
-                        "name VARCHAR(255) NOT NULL UNIQUE" +
+                        "name VARCHAR(255) NOT NULL UNIQUE," +
+                        "price FLOAT NOT NULL" +
                     ");";
 
                 conn.RunCommand(createDishTable);

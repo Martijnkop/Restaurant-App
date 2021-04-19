@@ -5,14 +5,22 @@ namespace Restaurant.Logic.ingredient.models
 {
     public class Ingredient
     {
-        public string Name { get; internal set; }
-        public int Diet { get; internal set; }
+        public string Name { get; private set; }
+        public int Diet { get; private set; }
 
         private IIngredientDAL ingredientDAL;
 
-        public Ingredient()
+        public Ingredient(string name, int diet)
         {
             ingredientDAL = IngredientFactory.CreateIIngredientDal();
+            this.Name = name;
+            this.Diet = diet;
+        }
+
+        public Ingredient(string name)
+        {
+            ingredientDAL = IngredientFactory.CreateIIngredientDal();
+            this.Name = name;
         }
 
         public void Update(string oldName)

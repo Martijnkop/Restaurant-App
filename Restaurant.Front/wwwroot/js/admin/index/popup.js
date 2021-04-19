@@ -13,6 +13,7 @@ function popup(isNew, currentlyShowing, conn, name, diet) {
 
     var popupBack = document.createElement("div")
     popupBack.classList = "popup-back"
+    popupBack.id = "popup-back"
     popup.appendChild(popupBack)
 
     var popupMain = document.createElement("div")
@@ -85,6 +86,11 @@ function popup(isNew, currentlyShowing, conn, name, diet) {
 
 function createCancelListener() {
     document.getElementById("cancel").addEventListener("click", function (event) {
+        var popup = document.getElementById("popup")
+        if (popup !== null) popup.remove()
+    })
+
+    document.getElementById("popup-back").addEventListener("click", function (event) {
         var popup = document.getElementById("popup")
         if (popup !== null) popup.remove()
     })

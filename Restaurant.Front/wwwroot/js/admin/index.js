@@ -70,6 +70,10 @@ connection.on("SendAllDishes", function (dishes) {
     document.getElementById("create").innerText = "Create Dish"
     document.getElementById("list").innerHTML = '';
     document.getElementById("list").classList = "list dishes"
+
+    dishes.forEach(dish => {
+        console.log(dish)
+    })
 })
 
 document.getElementById("dishButton").addEventListener("click", function (event) {

@@ -25,7 +25,7 @@ namespace Restaurant.Logic.ingredient
 
             foreach (IngredientDTO dbIngredient in dbIngredients)
             {
-                ingredients.Add(new Ingredient { Name = dbIngredient.Name, Diet = dbIngredient.Diet });
+                ingredients.Add(new Ingredient(dbIngredient.Name, dbIngredient.Diet));
             }
 
             return ingredients;

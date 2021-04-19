@@ -1,4 +1,5 @@
-﻿using Restaurant.Logic.ingredient.models;
+﻿using Restaurant.Logic.dish;
+using Restaurant.Logic.ingredient.models;
 using Restaurant.Logic.SiteLayout;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,6 @@ namespace Restaurant.Logic
         Task ReturnConnected();
         Task SendMenuItems(List<MenuItem> items);
         Task SendAllIngredients(List<Ingredient> ingredients);
-        Task SendAllDishes(bool a);
+        Task SendAllDishes(List<Dish> dishes);
     }
 }

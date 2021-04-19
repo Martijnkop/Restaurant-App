@@ -56,10 +56,10 @@ namespace Restaurant.Data
 
             if (conn.Open())
             {
-                string removeIngredient =
+                string updateIngredient =
                     $"UPDATE ingredient SET NAME='{newName}', DIET='{newDiet}' WHERE NAME='{oldName}'";
 
-                conn.RunCommand(removeIngredient);
+                conn.RunCommand(updateIngredient);
                 conn.Close();
                 return true;
             }
