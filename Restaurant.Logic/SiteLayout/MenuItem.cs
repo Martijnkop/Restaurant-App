@@ -31,6 +31,8 @@ namespace Restaurant.Logic.SiteLayout
                     break;
                 case "admin":
                     items.Add(GetMenuItem("Admin", "/admin"));
+                    items.Add(GetMenuItem("Kitchen", "/kitchen"));
+                    items.Add(GetMenuItem("Restaurant", "/restaurant"));
                     items.Add(GetMenuItem("Logout"));
                     break;
                 case "kitchen":
