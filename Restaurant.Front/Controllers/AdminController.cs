@@ -12,5 +12,10 @@ namespace Restaurant.Front.Controllers
         {
             return View();
         }
+
+        public IActionResult Tables()
+        {
+            return View();
+        }
     }
 }
