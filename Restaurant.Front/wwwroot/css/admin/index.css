@@ -119,11 +119,31 @@
     margin-block-end: 0;
 }
 
-.namebox {
+.dish_popup .popup-content {
+    display: flex;
+}
+
+.dish_popup .namecontainer {
+    flex: calc(33% + 60px);
+}
+
+.dish_popup .pricecontainer {
+    flex: calc(33% + 60px);
+}
+
+.dish_popup .confirm {
+    flex: 33%;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.namebox,
+.pricebox {
     margin-left: 20px;
 }
 
-.namewarning {
+.namewarning,
+.pricewarning {
     color: rgb(202, 54, 28);
 }
 
@@ -136,7 +156,8 @@
     margin-left: 20px;
 }
 
-.dietInput .box {
+.dietInput .box,
+.add {
     flex: 33%;
     display: block;
     position: relative;
@@ -144,7 +165,8 @@
     padding-left: 35px;
 }
 
-.dietInput input {
+.dietInput input,
+.dishIngredients input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -160,11 +182,17 @@
     border-radius: 50%;
 }
 
-.box:hover input~.checkmark {
+.dishIngredients .checkmark {
+    background-color: #ddd;
+}
+
+.box:hover input~.checkmark,
+.add:hover input~.checkmark {
     background-color: #aaa;
 }
 
-.box input:checked~.checkmark {
+.box input:checked~.checkmark,
+.add input:checked~.checkmark {
     background-color: var(--resButton);
 }
 
@@ -174,11 +202,13 @@
     display: none;
 }
 
-.box input:checked~.checkmark:after {
+.box input:checked~.checkmark:after,
+.add input:checked~.checkmark:after {
     display: block;
 }
 
-.box .checkmark:after {
+.box .checkmark:after,
+.add .checkmark:after {
     top: 9px;
     left: 9px;
     width: 8px;
@@ -187,10 +217,10 @@
     background: white;
 }
 
-.popup .confirm {
-    width: 30%;
+.ingredient_popup .confirm {
+    width: 50%;
     margin-left: 20px;
-    height: 20%;
+    height: 50px;
     margin-top: 20px;
 }
 
@@ -199,4 +229,44 @@
     padding-right: 10px;
     font-size: 60px;
     color: rgb(202, 54, 28);
+}
+
+.dishIngredients {
+    background-color: rgb(200, 200, 200);
+    width: calc(100% - 10px);
+    bottom: 0;
+    margin-top: 3%;
+    border-radius: 20px;
+    height: 65%;
+    overflow-y: scroll;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#dishIngredients::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+#dishIngredients::-webkit-scrollbar {
+    width: 6px;
+    margin-top: 10px;
+}
+
+#dishIngredients::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #555;
+}
+
+.dishIngredient {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #ccc;
+    margin-right: 10px;
+    border-radius: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.confirm {
+    cursor: pointer;
 }

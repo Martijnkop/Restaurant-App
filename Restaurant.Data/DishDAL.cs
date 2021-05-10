@@ -28,6 +28,13 @@ namespace Restaurant.Data
                 conn.RunCommand(addDish);
 
                 conn.Close();
+
+                DishIngredientRelationDAL dirDAL = new();
+                foreach (IngredientDTO i in ingredients)
+                {
+                    dirDAL.Add(i, new DishDTO { Name = name });
+                }
+
                 return true;
             }
 
@@ -39,8 +46,10 @@ namespace Restaurant.Data
 
             if (conn.Open())
             {
+                new DishIngredientRelationDAL().Remove(new DishDTO { Name = name });
+
                 string removeDish =
-                    $"DELETE FROM dish WHERE NAME='{name}'";
+                    $"DELETE FROM dish WHERE name='{name}';";
 
                 conn.RunCommand(removeDish);
                 conn.Close();
@@ -57,10 +66,39 @@ namespace Restaurant.Data
             if (conn.Open())
             {
                 string updateDish =
-                    $"UPDATE dish SET NAME='{newName}', PRICE='{price}' WHERE NAME='{oldName}'";
+                    $"UPDATE dish SET NAME='{newName}', PRICE='{price}' WHERE NAME='{oldName}';";
 
                 conn.RunCommand(updateDish);
                 conn.Close();
+
+                List<IngredientDTO> oldIngredients = FindByName(oldName).Ingredients;
+
+                // Remove all identical entries
+                // Everything left in oldIngredients should be removed after,
+                // Everything left in ingredients should be added
+                List<IngredientDTO> temp = new();
+                temp.AddRange(ingredients);
+                foreach (IngredientDTO i in temp)
+                {
+                    if (oldIngredients == null || oldIngredients.Count == 0) break;
+                    if (oldIngredients.Exists(oldIngredient => oldIngredient.Name == i.Name))
+                    {
+                        oldIngredients.RemoveAll(oldIngredient => oldIngredient.Name == i.Name);
+                        ingredients.Remove(i);
+                    }
+                }
+
+                DishDTO curr = FindByName(newName);
+                if (ingredients != null && ingredients.Count > 0) foreach (IngredientDTO i in ingredients)
+                    {
+                        //add
+                        new DishIngredientRelationDAL().Add(i, curr);
+                    }
+
+                if (oldIngredients != null && oldIngredients.Count > 0) foreach (IngredientDTO i in oldIngredients)
+                    {
+                        new DishIngredientRelationDAL().Remove(i, curr);
+                    }
                 return true;
             }
 
@@ -83,8 +121,8 @@ namespace Restaurant.Data
                     "JOIN `ingredientDishRelation` " +
                         "ON `ingredient`.`id` = `ingredientDishRelation`.`ingredientID` " +
                     "JOIN `dish` " +
-                        "ON `dish`.id = dishID " +
-                   $"WHERE `dish`.name=`{name}`";
+                        "ON `dish`.id = ingredientDishRelation.dishID " +
+                   $"WHERE `dish`.name='{name}'";
 
                 MySqlCommand cmd = new(getIngredients, conn.Connection);
 
@@ -93,14 +131,15 @@ namespace Restaurant.Data
                     while (reader.Read())
                     {
                         int id = int.Parse(reader.GetString(0));
+                        string ingredientName = reader.GetString(1);
                         byte diet = byte.Parse(reader.GetString(2));
 
-                        ingredients.Add(new IngredientDTO { Id = id, Name = name, Diet = diet });
+                        ingredients.Add(new IngredientDTO { Id = id, Name = ingredientName, Diet = diet });
                     }
                 }
 
                 string getDish =
-                    $"SELECT * FROM dish WHERE name={name}";
+                    $"SELECT * FROM dish WHERE name='{name}'";
 
                 MySqlCommand cmd2 = new(getDish, conn.Connection);
 
@@ -111,6 +150,7 @@ namespace Restaurant.Data
                         int id = int.Parse(reader.GetString(0));
                         float price = float.Parse(reader.GetString(2));
 
+                        conn.Close();
                         return new DishDTO { Id = id, Name = name, Price = price, Ingredients = ingredients };
                     }
                 }
@@ -144,6 +184,7 @@ namespace Restaurant.Data
                         dishes.Add(new DishDTO { Id = id, Name = name, Price = price });
                     }
                 }
+                conn.Close();
             }
 
             return dishes;

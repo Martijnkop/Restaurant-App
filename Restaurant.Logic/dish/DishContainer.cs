@@ -1,5 +1,7 @@
 ﻿using Restaurant.Factory;
 using Restaurant.Interface.dish;
+using Restaurant.Interface.ingredient;
+using Restaurant.Logic.ingredient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,19 @@ namespace Restaurant.Logic.dish
             }
 
             return dishes;
+        }
+
+        public Dish FindByName(string name)
+        {
+            DishDTO dto = dishContainerDAL.FindByName(name);
+            List<Ingredient> ingredients = new();
+
+            foreach(IngredientDTO ingredientDTO in dto.Ingredients)
+            {
+                ingredients.Add(new Ingredient(ingredientDTO.Name, ingredientDTO.Diet));
+            }
+
+            return new Dish(dto.Name, dto.Price, ingredients);
         }
     }
 }

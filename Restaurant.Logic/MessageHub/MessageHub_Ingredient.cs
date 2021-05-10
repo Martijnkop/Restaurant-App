@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Restaurant.Logic.ingredient;
-using Restaurant.Logic.ingredient.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

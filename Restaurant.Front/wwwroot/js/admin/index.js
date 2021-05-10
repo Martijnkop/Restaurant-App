@@ -8,6 +8,7 @@ var currentlyShowing = "dish"
 var conn
 
 connection.on("ReturnConnected", function () { // If page is connected to backend this runs
+    console.log("Connected to backend!")
     conn = connection
     connection.invoke("GetMenuItems", "admin").catch(function (err) { })
     connection.invoke("GetAllDishes").catch(function (err) { })
@@ -22,44 +23,24 @@ connection.on("SendAllIngredients", function (ingredients) {
     document.getElementById("list").classList = "list ingredients"
     ingredients.forEach(ingredient => {
         console.log(ingredient)
+        
         var div = document.createElement("div")
         div.classList = "list-element"
         div.id = "ingredient_" + ingredient.name
+        
+        var html =
+        `
+        <p class="name">`+ingredient.name+`</p>
+        <p class="diet">`+ingredientDiet(ingredient.diet)+`</p>
+        <i class="edit fas fa-edit" id="edit_ingredient_`+ingredient.name+`"></i>
+        <i class="trash fas fa-trash-alt" id="remove_ingredient_`+ingredient.name+`"></i>
+        `
 
-        var name = document.createElement("p")
-        name.innerText = ingredient.name
-
-        name.classList.add("name")
-        div.appendChild(name)
-
-        var diet = document.createElement("p")
-        switch (ingredient.diet) {
-            case 0:
-                diet.innerText += "meat"
-                break;
-            case 1:
-                diet.innerText += "vegetarian"
-                break;
-            case 2:
-                diet.innerText += "vegan"
-                break;
-        }
-        diet.classList.add("diet")
-        div.appendChild(diet)
-
-        var edit = document.createElement("i")
-        edit.classList = "edit fas fa-edit"
-        edit.id = "edit_" + div.id
-        div.appendChild(edit)
-
-        var remove = document.createElement("i")
-        remove.classList = "trash fas fa-trash-alt"
-        remove.id = "remove_" + div.id
-        div.appendChild(remove)
+        div.innerHTML += html
 
         document.getElementById("list").appendChild(div)
-        addEditListener(edit.id, ingredient.diet)
-        addRemoveListener(remove.id)
+        addIngredientEditListener(ingredient.name, ingredient.diet)
+        addRemoveListener("remove_ingredient_" + ingredient.name, "ingredient")
     })
 })
 
@@ -73,32 +54,24 @@ connection.on("SendAllDishes", function (dishes) {
 
     dishes.forEach(dish => {
         console.log(dish)
+
         var div = document.createElement("div")
         div.classList = "list-element"
         div.id = "dish_" + dish.name
 
-        var name = document.createElement("p")
-        name.innerText = dish.name
-
-        name.classList.add("name")
-        div.appendChild(name)
-
-        var price = document.createElement("p")
-        price.innerText += dish.price
-        price.classList.add("price")
-        div.appendChild(price)
-
-        var edit = document.createElement("i")
-        edit.classList = "edit fas fa-edit"
-        edit.id = "edit_" + div.id
-        div.appendChild(edit)
-
-        var remove = document.createElement("i")
-        remove.classList = "trash fas fa-trash-alt"
-        remove.id = "remove_" + div.id
-        div.appendChild(remove)
+        var html =
+        `
+        <p class="name">`+dish.name+`</p>
+        <p class="price">`+dish.price+`</p>
+        <i class="edit fas fa-edit" id="edit_dish_`+dish.name+`"></i>
+        <i class="trash fas fa-trash-alt" id="remove_dish_`+dish.name+`"></i>
+        `
+        
+        div.innerHTML += html
 
         document.getElementById("list").appendChild(div)
+        addDishEditListener(dish.name, dish.price)
+        addRemoveListener("remove_dish_" + dish.name, "dish")
     })
 })
 
@@ -114,16 +87,65 @@ document.getElementById("create").addEventListener("click", function () {
     popup(true, currentlyShowing, connection)
 })
 
-function addEditListener(id, diet) {
-    var edit = document.getElementById(id)
+connection.on("SendDishIngredients", function (ingredients) {
+    //console.log(ingredients)
+    Object.entries(ingredients).forEach(([key, value]) => {
+        var div = document.createElement("div")
+        div.classList = "dishIngredient"
+        div.id = "dishIngredient_" + key
+
+        var html =
+        `
+        <label class="add">`+key+`
+            <input type="checkbox" ` +checked(value)+ ` id="checkbox" >
+            <span class="checkmark"></span>
+        </label>
+        `
+
+        div.innerHTML = html
+
+        document.getElementById("dishIngredients").appendChild(div)
+    })
+})
+
+function checked(bool) {
+    if (bool) return `checked="checked"`;
+    else return "";
+}
+
+
+function addIngredientEditListener(id, diet) {
+    var edit = document.getElementById("edit_ingredient_" + id)
     edit.addEventListener("click", function (e) {
-        popup(false, currentlyShowing, connection, id.substring(16), diet)
+        popup(false, currentlyShowing, connection, id, diet)
     })
 }
 
-function addRemoveListener(id) {
+function addDishEditListener(id, price) {
+    var edit = document.getElementById("edit_dish_" + id)
+    edit.addEventListener("click", function (e) {
+        popup(false, currentlyShowing, conn, id, price)
+        //connection.invoke("GetDishInfo", id)
+    })
+}
+
+function addRemoveListener(id, type) {
     var remove = document.getElementById(id)
-    remove.addEventListener("click", function (e) {
+    if (type === "ingredient") remove.addEventListener("click", function (e) {
         connection.invoke("RemoveIngredient", id.substring(18))
     })
+    else if (type === "dish") remove.addEventListener("click", function (e) {
+        connection.invoke("RemoveDish", id.substring(12))
+    })
+}
+
+function ingredientDiet(id) {
+    switch (id) {
+        case 0:
+            return 'meat';
+        case 1:
+            return 'vegetarian';
+        case 2:
+            return 'vegan';
+    }
 }

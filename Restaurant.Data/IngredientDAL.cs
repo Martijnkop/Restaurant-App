@@ -39,6 +39,8 @@ namespace Restaurant.Data
 
             if (conn.Open())
             {
+                new DishIngredientRelationDAL().Remove(new IngredientDTO { Name = name });
+
                 string removeIngredient = 
                     $"DELETE FROM ingredient WHERE NAME='{name}'";
 
@@ -74,7 +76,7 @@ namespace Restaurant.Data
             if (conn.Open())
             {
                 string getIngredient =
-                    $"SELECT * FROM ingredient WHERE name={name}";
+                    $"SELECT * FROM ingredient WHERE name='{name}'";
 
                 MySqlCommand cmd = new(getIngredient, conn.Connection);
 
@@ -85,6 +87,7 @@ namespace Restaurant.Data
                         int id = int.Parse(reader.GetString(0));
                         byte diet = byte.Parse(reader.GetString(2));
 
+                        conn.Close();
                         return new IngredientDTO { Id = id, Name = name, Diet = diet };
                     }
                 }
@@ -118,6 +121,8 @@ namespace Restaurant.Data
                         ingredients.Add(new IngredientDTO { Id = id, Name = name, Diet = diet });
                     }
                 }
+
+                conn.Close();
             }
 
             return ingredients;

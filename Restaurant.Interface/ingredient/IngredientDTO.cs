@@ -10,6 +10,6 @@ namespace Restaurant.Interface.ingredient
     {
         public int Id;
         public string Name;
-        public byte Diet;
+        public int Diet;
     }
 }

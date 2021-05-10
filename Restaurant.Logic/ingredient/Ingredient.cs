@@ -1,7 +1,7 @@
 ﻿using Restaurant.Factory;
 using Restaurant.Interface.ingredient;
 
-namespace Restaurant.Logic.ingredient.models
+namespace Restaurant.Logic.ingredient
 {
     public class Ingredient
     {

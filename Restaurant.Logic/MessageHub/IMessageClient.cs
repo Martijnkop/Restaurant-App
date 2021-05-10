@@ -1,5 +1,5 @@
 ﻿using Restaurant.Logic.dish;
-using Restaurant.Logic.ingredient.models;
+using Restaurant.Logic.ingredient;
 using Restaurant.Logic.SiteLayout;
 using System;
 using System.Collections.Generic;
@@ -15,5 +15,7 @@ namespace Restaurant.Logic
         Task SendMenuItems(List<MenuItem> items);
         Task SendAllIngredients(List<Ingredient> ingredients);
         Task SendAllDishes(List<Dish> dishes);
+        Task SendDish(Dish dish);
+        Task SendDishIngredients(Dictionary<string, bool> ingredients);
     }
 }
