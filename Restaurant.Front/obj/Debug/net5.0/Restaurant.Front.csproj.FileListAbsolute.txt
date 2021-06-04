@@ -383,3 +383,4 @@ C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaur
 C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\bin\Debug\net5.0\Restaurant.Interface.pdb
 C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\obj\Debug\net5.0\Razor\Views\Kitchen\Index.cshtml.g.cs
 C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\obj\Debug\net5.0\Razor\Views\Restaurant\Index.cshtml.g.cs
+C:\Users\marti\OneDrive - Office 365 Fontys\ICT\S2.2\Individueel\Project\Restaurant-App\Restaurant-App\Restaurant.Front\obj\Debug\net5.0\Razor\Views\Admin\Tables.cshtml.g.cs
