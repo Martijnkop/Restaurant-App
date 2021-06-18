@@ -14,37 +14,33 @@ namespace Restaurant.Logic.dish
     {
         public string Name { get; private set; }
         public float Price { get; private set; }
-        public int Diet { get; private set; }
         public List<Ingredient> Ingredients { get; private set; }
 
         private List<IngredientDTO> IngredentDTOs { get { return GetIngredientDTOs(); } }
 
         private IDishDAL dishDAL;
 
-        public Dish(string name, float price, List<Ingredient> ingredients)
+        public int Diet { get { return GetDiet(); } }
+
+        public Dish(string name, List<Ingredient> ingredients, float price = 0, IDishDAL dal = null)
         {
-            dishDAL = DishFactory.CreateIDishDal();
+            if (dal != null) this.dishDAL = dal;
+            else this.dishDAL = DishFactory.CreateIDishDal();
 
             this.Name = name;
             this.Price = price;
             this.Ingredients = ingredients;
         }
 
-        public Dish(string name)
+        public Dish(string name, float price = 0, IDishDAL dal = null)
         {
-            dishDAL = DishFactory.CreateIDishDal();
-            this.Name = name;
-        }
-
-        public Dish(string name, float price)
-        {
-            dishDAL = DishFactory.CreateIDishDal();
-
+            if (dal != null) this.dishDAL = dal;
+            else this.dishDAL = DishFactory.CreateIDishDal();
             this.Name = name;
             this.Price = price;
         }
 
-        public Dish(string name, float price, List<string> ingredientNames)
+        public Dish(string name, List<string> ingredientNames, float price = 0f)
         {
             dishDAL = DishFactory.CreateIDishDal();
 
@@ -53,18 +49,41 @@ namespace Restaurant.Logic.dish
             this.Ingredients = new IngredientContainer().FindByNames(ingredientNames);
         }
 
-        public void Update(string oldName)
+        public bool Update(string oldName, IDishContainerDAL dal = null)
         {
-            dishDAL.Update(oldName, this.Name, this.Price, this.IngredentDTOs);
+            if (ExistsInDatabase(this.Name, dal) && this.Name != oldName) return false;
+
+            if (!ExistsInDatabase(oldName, dal)) return false;
+
+            this.Price = (float)Math.Round(this.Price, 2);
+            if (this.Price < 0) return false;
+
+            return dishDAL.Update(oldName, this.Name, this.Price, this.IngredentDTOs);
         }
 
-        public void Add()
+        public bool Add(IDishContainerDAL dal = null)
         {
-            dishDAL.Add(this.Name, this.Price, this.IngredentDTOs);
-        }
-        public void Remove() => dishDAL.Remove(this.Name);
+            if (ExistsInDatabase(this.Name, dal)) return false;
 
-        private List<IngredientDTO> GetIngredientDTOs()
+            this.Price = (float)Math.Round(this.Price, 2);
+            if (this.Price < 0) return false;
+
+            return dishDAL.Add(this.Name, this.Price, this.IngredentDTOs);
+        }
+
+        private bool ExistsInDatabase(string name, IDishContainerDAL dal)
+        {
+            Dish i = new DishContainer(dal).FindByName(name);
+            return i.Name == name;
+        }
+
+        public bool Remove(IDishContainerDAL dal = null)
+        {
+            if (!ExistsInDatabase(this.Name, dal)) return false;
+            return dishDAL.Remove(this.Name);
+        }
+
+        public List<IngredientDTO> GetIngredientDTOs(IDishContainerDAL dal = null)
         {
             List<IngredientDTO> ingredientDTOs = new();
             if (this.Ingredients != null) foreach (Ingredient ingredient in this.Ingredients)
@@ -91,6 +110,19 @@ namespace Restaurant.Logic.dish
             }
 
             return dict;
+        }
+
+        private int GetDiet()
+        {
+            if (this.Ingredients == null || this.Ingredients.Count == 0) return -1;
+            int diet = 2;
+            foreach (Ingredient i in this.Ingredients)
+            {
+                if (i.Diet == 0) return 0;
+                if (i.Diet == 1) diet = 1;
+            }
+
+            return diet;
         }
     }
 }

@@ -137,6 +137,12 @@
     margin-left: 30px;
 }
 
+.table_popup .confirm {
+    margin-left: 20px;
+    width: calc(100% - 40px);
+    height: 70px;
+}
+
 .namebox,
 .pricebox {
     margin-left: 20px;

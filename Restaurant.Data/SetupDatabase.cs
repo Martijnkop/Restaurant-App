@@ -16,7 +16,7 @@ namespace Restaurant.Data
             {
                 string createIngredientTable =
                     "CREATE TABLE IF NOT EXISTS ingredient (" +
-                        "id INT AUTO_INCREMENT PRIMARY KEY," +
+                        "id INT AUTO_INCREMENT PRIMARY KEY, " +
                         "name VARCHAR(255) NOT NULL UNIQUE," +
                         "diet TINYINT NOT NULL" +
                     ");";
@@ -25,35 +25,33 @@ namespace Restaurant.Data
 
                 string createDishTable =
                     "CREATE TABLE IF NOT EXISTS dish (" +
-                        "id INT AUTO_INCREMENT PRIMARY KEY," +
-                        "name VARCHAR(255) NOT NULL UNIQUE," +
+                        "id INT AUTO_INCREMENT PRIMARY KEY, " +
+                        "name VARCHAR(255) NOT NULL UNIQUE, " +
                         "price FLOAT NOT NULL" +
                     ");";
 
                 conn.RunCommand(createDishTable);
 
+                string createTableTable =
+                    "CREATE TABLE IF NOT EXISTS restaurantTable (" +
+                        "id INT AUTO_INCREMENT PRIMARY KEY, " +
+                        "tablenumber INT NOT NULL UNIQUE," +
+                        "tableStatus INT" +
+                    ");";
+
+                conn.RunCommand(createTableTable);
+
                 string createBillTable =
                     "CREATE TABLE IF NOT EXISTS bill (" +
-                        "id INT AUTO_INCREMENT PRIMARY KEY" +
+                        "id INT AUTO_INCREMENT PRIMARY KEY," +
+                        "tableNumber INT," +
+                        "billStatus INT," +
+                        "tip FLOAT," +
+                        "archived TINYINT(1)" +
                     ");";
 
                 conn.RunCommand(createBillTable);
 
-                string createTableTable =
-                    "CREATE TABLE IF NOT EXISTS restaurantTable (" +
-                        "id INT AUTO_INCREMENT PRIMARY KEY," +
-                        "tablenumber INT NOT NULL UNIQUE" +
-                    ");";
-                conn.RunCommand(createTableTable);
-
-                string createGuestTable =
-                    "CREATE TABLE IF NOT EXISTS guest (" +
-                        "id INT AUTO_INCREMENT PRIMARY KEY," +
-                        "status TINYINT NOT NULL," +
-                        "lastupdate LONG NOT NULL" +
-                    ");";
-
-                conn.RunCommand(createGuestTable);
 
                 string createLinkIngredientDishTable =
                     "CREATE TABLE IF NOT EXISTS ingredientDishRelation (" +
@@ -70,11 +68,8 @@ namespace Restaurant.Data
                 string createLinkDishBillTable =
                     "CREATE TABLE IF NOT EXISTS dishBillRelation (" +
                         "dishID INT NOT NULL," +
-                        "billID INT NOT NULL," +
+                        "billID INT NOT NULL " +
                         "" +
-                        "FOREIGN KEY (dishID) REFERENCES dish (id)," +
-                        "FOREIGN KEY (billID) REFERENCES bill (id)," +
-                        "UNIQUE (dishID, billID)" +
                     ");";
 
                 conn.RunCommand(createLinkDishBillTable);

@@ -8,6 +8,8 @@ var itemData
 var connection
 
 function popup(isNew, currentlyShowing, conn, name, data) {
+    var tableNumber;
+    if (currentlyShowing === "table") tableNumber = name;
     connection = conn
     isNewItem = isNew
     itemData = data
@@ -43,31 +45,38 @@ function popup(isNew, currentlyShowing, conn, name, data) {
     var popupContent = document.createElement("div")
     popupContent.classList = "popup-content"
 
-    if (currentlyShowing === "dish") {
-        var html = getNameBox(name) + getPriceBox(data)
+    switch (currentlyShowing) {
+        case "dish":
+            var html = getNameBox(name) + getPriceBox(data)
+            break;
             
 
-    } else if (currentlyShowing === "ingredient") {
-        var html =
+        case "ingredient":
+            var html =
             getNameBox(name) + `
-        <p class="diet">Diet:</p>
-        <div class="dietInput">
-            <label class="box">Vegan
-                <input type="radio" ` + getDietEnabled(2) + `id="vegan" name="dietPicker">
-                <span class="checkmark"></span>
-            </label>
+            <p class="diet">Diet:</p>
+            <div class="dietInput">
+                <label class="box">Vegan
+                    <input type="radio" ` + getDietEnabled(2) + `id="vegan" name="dietPicker">
+                    <span class="checkmark"></span>
+                </label>
 
-            <label class="box">Vegetarian
-                <input type="radio" ` + getDietEnabled(1) + `id="vegetarian" name="dietPicker">
-                <span class="checkmark"></span>
-            </label>
+                <label class="box">Vegetarian
+                    <input type="radio" ` + getDietEnabled(1) + `id="vegetarian" name="dietPicker">
+                    <span class="checkmark"></span>
+                </label>
 
-            <label class="box">Meat
-                <input type="radio" ` + getDietEnabled(0) + `id="meat" name="dietPicker">
-                <span class="checkmark"></span>
-            </label>
-        </div>
-        `;
+                <label class="box">Meat
+                    <input type="radio" ` + getDietEnabled(0) + `id="meat" name="dietPicker">
+                    <span class="checkmark"></span>
+                </label>
+            </div>`;
+            break;
+
+        case "table":
+            var html = getTableNumberBox(tableNumber)
+            break;
+
 
 
     }
@@ -97,7 +106,7 @@ function popup(isNew, currentlyShowing, conn, name, data) {
     document.getElementById("admin-home").append(popup)
     createCancelListener()
     createConfirmListener(isNew, conn, name, currentlyShowing)
-    nameListener()
+    nameListener(currentlyShowing)
     if (currentlyShowing === "dish") {
         priceListener()
         connection.invoke("GetDishIngredients", name)
@@ -118,38 +127,56 @@ function createCancelListener() {
 }
 
 function createConfirmListener(isNew, conn, oldName, currentlyShowing) {
+    
     document.getElementById("confirm").addEventListener("click", function (event) {
-        console.log("test")
-        var name = document.getElementById("name").value
-        if (currentlyShowing === "ingredient") {
-            var vegan;
-            if (document.getElementById("meat").checked === true) vegan = 0
-            else if (document.getElementById("vegetarian").checked === true) vegan = 1
-            else vegan = 2
+        switch (currentlyShowing) {
+            case "ingredient":
+                var name = document.getElementById("name").value
+                var vegan;
+                if (document.getElementById("meat").checked === true) vegan = 0
+                else if (document.getElementById("vegetarian").checked === true) vegan = 1
+                else vegan = 2
 
-            if (isNew) connection.invoke("AddIngredient", name, vegan).catch(function (err) {});
-            else connection.invoke("EditIngredient", oldName, name, vegan).catch(function (err) {});
-        } else {
-            var price = document.getElementById("price").value
+                if (isNew) connection.invoke("AddIngredient", name, vegan).catch(function (err) {});
+                else connection.invoke("EditIngredient", oldName, name, vegan).catch(function (err) {});
+                break;
+            case "dish":
+                var name = document.getElementById("name").value
+                var price = document.getElementById("price").value
             
-            console.log(price)
-            var dishIngredients = getDishIngredients()
+                console.log(price)
+                var dishIngredients = getDishIngredients()
 
-            console.log(dishIngredients)
+                console.log(dishIngredients)
 
-            if (isNew) connection.invoke("AddDish", name, price, dishIngredients).catch(function (err) {console.log(err)});
-            else connection.invoke("EditDish", oldName, name, price, dishIngredients).catch(function (err) {});
+                if (isNew) connection.invoke("AddDish", name, price, dishIngredients).catch(function (err) {console.log(err)});
+                else connection.invoke("EditDish", oldName, name, price, dishIngredients).catch(function (err) {});
+                break;
+            case "table":
+                var tableNumber = document.getElementById("tablenumber")
+                console.log(isNew)
+                if (isNew) connection.invoke("AddTable", tableNumber.value).catch(function (err) {});
+                else connection.invoke("EditTable", oldName, tableNumber.value).catch(function (err) {});
+                break;
         }
     })
 }
 
-function nameListener() {
-    document.getElementById("name").addEventListener("input", function (event) {
+function nameListener(currentlyShowing) {
+    if (currentlyShowing === "table") {
+        document.getElementById("tablenumber").addEventListener("input", function (event) {
+            var nameWarning = document.getElementById("tablenumberwarning")
+            if (event.target.value === "") {
+                nameWarning.innerText = "Table Number can't be empty!"            } else {
+                nameWarning.innerText = " "
+                nameValid = true
+            }
+        })
+    }
+    else document.getElementById("name").addEventListener("input", function (event) {
         var nameWarning = document.getElementById("namewarning")
         if (event.target.value === "") {
-            nameWarning.innerText = "Name can't be empty!"
-            valid = false
-        } else {
+            nameWarning.innerText = "Name can't be empty!"        } else {
             nameWarning.innerText = " "
             nameValid = true
         }
@@ -190,6 +217,24 @@ function priceListener() {
 function getDietEnabled(num) {
     if (itemData === num || (isNewItem && num === 2)) return `checked="checked"`;
     return "";
+}
+
+function getTableNumberBox(tableNumber) {
+    if (tableNumber === null || tableNumber === undefined) return `
+        <div class="tablenumbercontainer">
+            <p class="tablenumber">Table Number:</p>
+            <input class="namebox" id="tablenumber" value="">
+            <p class="namewarning" id="tablenumberwarning">Table number can't be empty!</p>
+        </div>
+    `;
+
+    else return `
+        <div class="tablenumbercontainer">
+            <p class="tablenumber">Table Number:</p>
+            <input class="namebox" id="tablenumber" value="` + tableNumber + `">
+            <p class="namewarning" id="tablenumberwarning"></p>
+        </div>
+    `;
 }
 
 function getNameBox(name) {

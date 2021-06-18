@@ -12,9 +12,11 @@ namespace Restaurant.Logic.ingredient
     public class IngredientContainer
     {
         private IIngredientContainerDAL ingredientContainerDAL;
-        public IngredientContainer()
+
+        public IngredientContainer(IIngredientContainerDAL dal = null)
         {
-            this.ingredientContainerDAL = IngredientFactory.CreateIIngredientContainerDal();
+            if (dal != null) this.ingredientContainerDAL = dal;
+            else this.ingredientContainerDAL = IngredientFactory.CreateIIngredientContainerDal();
         }
 
         public List<Ingredient> GetAll()
@@ -24,7 +26,7 @@ namespace Restaurant.Logic.ingredient
 
             foreach (IngredientDTO dbIngredient in dbIngredients)
             {
-                ingredients.Add(new Ingredient(dbIngredient.Name, dbIngredient.Diet));
+                ingredients.Add(ConvertFromDTO(dbIngredient));
             }
 
             return ingredients;
@@ -34,7 +36,7 @@ namespace Restaurant.Logic.ingredient
         {
             IngredientDTO dto = ingredientContainerDAL.FindByName(name);
 
-            return new Ingredient(dto.Name, dto.Diet);
+            return ConvertFromDTO(dto);
         }
 
         public List<Ingredient> FindByNames(List<string> names)
@@ -46,6 +48,13 @@ namespace Restaurant.Logic.ingredient
             }
 
             return ingredients;
+        }
+
+
+
+        public Ingredient ConvertFromDTO(IngredientDTO ingredient)
+        {
+            return new Ingredient(ingredient.Name, ingredient.Diet);
         }
     }
 }

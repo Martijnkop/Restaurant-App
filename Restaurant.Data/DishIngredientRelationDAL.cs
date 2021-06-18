@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Data
 {
-    public class DishIngredientRelationDAL : IDishIngredientRelationDAL
+    internal class DishIngredientRelationDAL : IDishIngredientRelationDAL
     {
         public bool Add(IngredientDTO ingredient, DishDTO dish)
         {

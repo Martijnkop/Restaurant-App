@@ -13,9 +13,10 @@ namespace Restaurant.Logic.dish
     public class DishContainer
     {
         private IDishContainerDAL dishContainerDAL;
-        public DishContainer()
+        public DishContainer(IDishContainerDAL dal = null)
         {
-            this.dishContainerDAL = DishFactory.CreateIDishContainerDal();
+            if (dal == null) this.dishContainerDAL = DishFactory.CreateIDishContainerDal();
+            else dishContainerDAL = dal;
         }
 
         public List<Dish> GetAll()
@@ -25,7 +26,7 @@ namespace Restaurant.Logic.dish
 
             foreach (DishDTO dbDish in dbDishes)
             {
-                dishes.Add(new Dish(dbDish.Name, dbDish.Price));
+                dishes.Add(ConvertFromDTO(dbDish));
             }
 
             return dishes;
@@ -36,12 +37,49 @@ namespace Restaurant.Logic.dish
             DishDTO dto = dishContainerDAL.FindByName(name);
             List<Ingredient> ingredients = new();
 
-            foreach(IngredientDTO ingredientDTO in dto.Ingredients)
+            if (dto.Ingredients != null) foreach(IngredientDTO ingredientDTO in dto.Ingredients)
             {
-                ingredients.Add(new Ingredient(ingredientDTO.Name, ingredientDTO.Diet));
+                ingredients.Add(new IngredientContainer().ConvertFromDTO(ingredientDTO));
             }
 
-            return new Dish(dto.Name, dto.Price, ingredients);
+            return new Dish(dto.Name, ingredients, dto.Price);
+        }
+
+        public Dish ConvertFromDTO(DishDTO dish)
+        {
+            List<Ingredient> ingredients = new();
+            if (dish.Ingredients != null) foreach (IngredientDTO i in dish.Ingredients)
+            {
+                ingredients.Add(new IngredientContainer().ConvertFromDTO(i));
+            }
+            return new Dish(dish.Name, ingredients, dish.Price);
+        }
+
+        public List<Dish> ConvertFromDTOs(List<DishDTO> dtos)
+        {
+            List<Dish> dishes = new();
+            if (dtos != null) foreach (DishDTO dto in dtos)
+            {
+                dishes.Add(ConvertFromDTO(dto));
+            }
+
+            return dishes;
+        }
+
+        public List<DishDTO> ConvertToDTOs(List<Dish> dishes)
+        {
+            List<DishDTO> dtos = new();
+            if (dishes != null) foreach (Dish dish in dishes)
+            {
+                dtos.Add(ConvertToDTO(dish));
+            }
+
+            return dtos;
+        }
+
+        public DishDTO ConvertToDTO(Dish dish)
+        {
+            return new DishDTO { Name = dish.Name, Price = dish.Price, Ingredients = dish.GetIngredientDTOs() };
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Restaurant.Logic
         public async Task AddDish(string name, string priceString, List<string> ingredientNames)
         {
             if (float.TryParse(priceString, out float price)) {
-                new Dish(name, price, ingredientNames).Add();
+                new Dish(name, ingredientNames, price).Add();
             }
             await GetAllDishes();
         }
@@ -23,7 +23,7 @@ namespace Restaurant.Logic
         {
             if (float.TryParse(priceString, out float price))
             {
-                new Dish(newName, price, ingredientNames).Update(oldName);
+                new Dish(newName, ingredientNames, price).Update(oldName);
             }
             await GetAllDishes();
         }
