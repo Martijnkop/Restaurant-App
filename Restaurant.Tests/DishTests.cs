@@ -13,6 +13,8 @@ namespace Restaurant.Tests
     [TestClass]
     public class DishTests
     {
+        #region Add
+
         [TestMethod]
         [TestCategory("Add")]
         public void AddDish_NoIngredients_Added()
@@ -90,6 +92,10 @@ namespace Restaurant.Tests
 
             Assert.IsFalse(res);
         }
+
+        #endregion
+
+        #region GetDiet
 
         [TestMethod]
         [TestCategory("GetDiet")]
@@ -172,6 +178,10 @@ namespace Restaurant.Tests
 
             Assert.AreEqual(res, -1);
         }
+
+        #endregion
+
+        #region Update
 
         [TestMethod]
         [TestCategory("Update")]
@@ -259,6 +269,9 @@ namespace Restaurant.Tests
             Assert.AreEqual(dal.Dishes[0].Price, 10.05f);
         }
 
+        #endregion
+
+        #region Remove
         [TestMethod]
         [TestCategory("Remove")]
         public void RemoveDish_CorrectName_Remove()
@@ -286,5 +299,7 @@ namespace Restaurant.Tests
 
             Assert.IsFalse(result);
         }
+
+        #endregion
     }
 }

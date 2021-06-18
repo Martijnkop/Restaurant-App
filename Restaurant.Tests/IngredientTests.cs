@@ -11,6 +11,8 @@ namespace Restaurant.Tests
     public class IngredientTests
     {
 
+        #region Add
+
         [TestMethod]
         [TestCategory("Add")]
         public void AddIngredient_WithCorrectParameters_Added()
@@ -62,6 +64,10 @@ namespace Restaurant.Tests
 
             Assert.AreEqual(dal.TestList[0].Diet, 0);
         }
+
+        #endregion
+
+        #region Update
 
         [TestMethod]
         [TestCategory("Update")]
@@ -132,6 +138,10 @@ namespace Restaurant.Tests
             Assert.IsFalse(result);
         }
 
+        #endregion
+
+        #region Remove
+
         [TestMethod]
         [TestCategory("Remove")]
         public void RemoveIngredient_Exists_Remove()
@@ -156,5 +166,7 @@ namespace Restaurant.Tests
 
             Assert.IsFalse(result);
         }
+
+        #endregion
     }
 }
