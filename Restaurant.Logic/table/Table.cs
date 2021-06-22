@@ -18,42 +18,47 @@ namespace Restaurant.Logic.table
         public int Status { get; set; }
         public Bill Bill { get; set; }
         public double TotalPrice { get { return GetTotalPrice(); } }
-        public Table(int tableNumber)
+
+        public Table(int tableNumber, TableStatus status = TableStatus.Free, Bill bill = null, ITableDAL dal = null)
         {
-            this.TableDAL = new TableFactory().CreateITableDAL();
-            this.TableNumber = tableNumber;
-        }
-        public Table(int tableNumber, TableStatus status, Bill bill = null)
-        {
-            this.TableDAL = new TableFactory().CreateITableDAL();
+            if (dal == null) this.TableDAL = new TableFactory().CreateITableDAL();
+            else this.TableDAL = dal;
             this.TableNumber = tableNumber;
             this.Status = (int)status;
             this.Bill = bill;
         }
 
-        public void Add()
+        public bool Add()
         {
-            TableDAL.Add(this.TableNumber);
+            if (this.TableNumber < 1) return false;
+            return TableDAL.Add(this.TableNumber);
         }
 
-        public void Update(int oldTableNumber)
+        public bool Update(int oldTableNumber)
         {
-            this.TableDAL.Update(oldTableNumber, this.TableNumber, this.Status);
+            if (this.TableNumber < 1) return false;
+            return this.TableDAL.Update(oldTableNumber, this.TableNumber, this.Status);
         }
 
-        public void AssignGuest()
+        public bool AssignGuest()
         {
             this.Status = (int)TableStatus.Taken;
             this.Bill = new Bill(this.TableNumber, BillStatus.Open);
             this.Bill.Add();
-            Update(this.TableNumber);
+            return Update(this.TableNumber);
         }
 
-        internal void RemoveGuest()
+        public bool RemoveGuest(ITableContainerDAL dal = null)
         {
             this.Status = (int)TableStatus.Free;
+            if (this.Bill == null)
+            {
+                Table temp = new TableContainer(dal).FindByTableNumber(this.TableNumber);
+                if (temp == null || temp.Bill == null) return false;
+                this.Bill = temp.Bill;
+            }
             this.Bill.RemoveFromTableOrArchive();
-            Update(this.TableNumber);
+            return Update(this.TableNumber);
         }
 
         private double GetTotalPrice()

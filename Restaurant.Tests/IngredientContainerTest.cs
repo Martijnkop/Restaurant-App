@@ -55,7 +55,27 @@ namespace Restaurant.Tests
         [TestCategory("FindByName")]
         public void FindByName_NameNotExist_Null()
         {
+            IngredientTestDAL dal = new();
 
+            Ingredient shouldBeNull = new IngredientContainer(dal).FindByName("notExist");
+
+            Assert.IsNull(shouldBeNull);
+        }
+
+        [TestMethod]
+        [TestCategory("FindByName")]
+        public void FindByName_DoesExist_Return()
+        {
+            IngredientTestDAL dal = new();
+
+            Ingredient i = new Ingredient(name: "test", dal: dal);
+
+            i.Add(dal);
+
+            Ingredient shouldExist = new IngredientContainer(dal).FindByName("test");
+
+            Assert.AreEqual(shouldExist.Name, i.Name);
+            Assert.AreEqual(shouldExist.Diet, i.Diet);
         }
 
         #endregion

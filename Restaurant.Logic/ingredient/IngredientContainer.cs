@@ -37,6 +37,7 @@ namespace Restaurant.Logic.ingredient
             IngredientDTO dto = ingredientContainerDAL.FindByName(name);
 
             return ConvertFromDTO(dto);
+
         }
 
         public List<Ingredient> FindByNames(List<string> names)
@@ -50,10 +51,9 @@ namespace Restaurant.Logic.ingredient
             return ingredients;
         }
 
-
-
         public Ingredient ConvertFromDTO(IngredientDTO ingredient)
         {
+            if (ingredient.Name == null) return null;
             return new Ingredient(ingredient.Name, ingredient.Diet);
         }
     }

@@ -8,7 +8,7 @@ namespace Restaurant.Interface.table
 {
     public interface ITableDAL
     {
-        void Add(int tableNumber);
-        void Update(int oldTableNumber, int tableNumber, int status);
+        bool Add(int tableNumber);
+        bool Update(int oldTableNumber, int tableNumber, int status);
     }
 }

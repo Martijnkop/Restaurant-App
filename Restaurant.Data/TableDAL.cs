@@ -10,7 +10,7 @@ namespace Restaurant.Data
 {
     public class TableDAL : ITableContainerDAL, ITableDAL
     {
-        public void Add(int tableNumber)
+        public bool Add(int tableNumber)
         {
             DBConnection conn = new();
 
@@ -23,7 +23,7 @@ namespace Restaurant.Data
                 if (count >= 1)
                 {
                     conn.Close();
-                    return;
+                    return false;
                 }
 
                 string add =
@@ -37,7 +37,11 @@ namespace Restaurant.Data
                 conn.RunCommand(add);
 
                 conn.Close();
+
+                return true;
             }
+
+            return false;
         }
 
         public TableDTO FindByTableNumber(int tableNumber)
@@ -100,7 +104,7 @@ namespace Restaurant.Data
             return tables;
         }
 
-        public void Update(int oldTableNumber, int tableNumber, int status)
+        public bool Update(int oldTableNumber, int tableNumber, int status)
         {
             DBConnection conn = new();
 
@@ -115,7 +119,7 @@ namespace Restaurant.Data
                     if (count >= 1)
                     {
                         conn.Close();
-                        return;
+                        return false;
                     }
                 }
 
@@ -123,7 +127,10 @@ namespace Restaurant.Data
                     $"UPDATE restauranttable SET TABLENUMBER='{tableNumber}', TABLESTATUS='{status}' WHERE TABLENUMBER='{oldTableNumber}';";
                 conn.RunCommand(cmd);
                 conn.Close();
+                return true;
             }
+
+            return false;
         }
     }
 }

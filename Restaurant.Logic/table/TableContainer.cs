@@ -12,24 +12,22 @@ namespace Restaurant.Logic.table
     public class TableContainer
     {
         private ITableContainerDAL DAL;
-        public TableContainer()
+        public TableContainer(ITableContainerDAL dal = null)
         {
-            this.DAL = new TableFactory().CreateITableContainerDAL();
+            if (dal == null) this.DAL = new TableFactory().CreateITableContainerDAL();
+            else this.DAL = dal;
         }
 
-        internal Table FindByID(int tableID)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal Table FindByTableNumber(int tableNumber)
+        public Table FindByTableNumber(int tableNumber)
         {
             TableDTO table = DAL.FindByTableNumber(tableNumber);
-            table.Bill = new BillContainer().ConvertToDTO(new BillContainer().FindByTableNumber(tableNumber));
-            return ConvertFromDTO(table);
+            if (table.TableNumber == 0) return null;
+            Table t = ConvertFromDTO(table);
+            t.Bill = new BillContainer().FindByTableNumber(tableNumber);
+            return t;
         }
 
-        internal List<Table> GetAll()
+        public List<Table> GetAll()
         {
             List<TableDTO> tableDTOs = this.DAL.GetAll();
             List<Table> tables = new();

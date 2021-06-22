@@ -47,7 +47,8 @@ namespace Restaurant.Logic.ingredient
 
         private bool ExistsInDatabase(string name, IIngredientContainerDAL containerDAL = null)
         {
-            return new IngredientContainer(containerDAL).FindByName(name).Name == name;
+            Ingredient i = new IngredientContainer(containerDAL).FindByName(name);
+            return i != null;
         }
     }
 }

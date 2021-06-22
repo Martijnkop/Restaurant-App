@@ -35,18 +35,14 @@ namespace Restaurant.Logic.dish
         public Dish FindByName(string name)
         {
             DishDTO dto = dishContainerDAL.FindByName(name);
-            List<Ingredient> ingredients = new();
 
-            if (dto.Ingredients != null) foreach(IngredientDTO ingredientDTO in dto.Ingredients)
-            {
-                ingredients.Add(new IngredientContainer().ConvertFromDTO(ingredientDTO));
-            }
-
-            return new Dish(dto.Name, ingredients, dto.Price);
+            return ConvertFromDTO(dto);
         }
 
         public Dish ConvertFromDTO(DishDTO dish)
         {
+            if (dish.Name == null) return null;
+
             List<Ingredient> ingredients = new();
             if (dish.Ingredients != null) foreach (IngredientDTO i in dish.Ingredients)
             {

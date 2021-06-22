@@ -74,7 +74,7 @@ namespace Restaurant.Logic.dish
         private bool ExistsInDatabase(string name, IDishContainerDAL dal)
         {
             Dish i = new DishContainer(dal).FindByName(name);
-            return i.Name == name;
+            return i != null;
         }
 
         public bool Remove(IDishContainerDAL dal = null)

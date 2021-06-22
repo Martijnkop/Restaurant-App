@@ -13,21 +13,15 @@ namespace Restaurant.Logic.bill
 {
     public class Bill
     {
-        public List<Dish> Dishes { get; set; } = new();
-        public int TableNumber { get; set; }
-        public int Status { get; set; }
-        public double Tip { get; set; }
-        public bool Archived { get; set; }
+        public List<Dish> Dishes { get; } = new();
+        public int TableNumber { get; }
+        public int Status { get; }
+        public double Tip { get; }
+        public bool Archived { get; }
         
         private IBillDAL dal;
 
-        public Bill(IBillDAL dal = null)
-        {
-            if (dal == null) dal = new BillFactory().CreateIBillDAL();
-            else this.dal = dal;
-        }
-
-        public Bill(int table, BillStatus status, List<Dish> dishes = null, double tip = 0d, bool archived = false, IBillDAL dal = null)
+        internal Bill(int table, BillStatus status, List<Dish> dishes = null, double tip = 0d, bool archived = false, IBillDAL dal = null)
         {
             if (dal == null) dal = new BillFactory().CreateIBillDAL();
             else this.dal = dal;
@@ -41,7 +35,7 @@ namespace Restaurant.Logic.bill
             else this.dal = dal;
         }
 
-        public void Add()
+        internal void Add()
         {
             dal.Add(new BillContainer().ConvertToDTO(this));
         }

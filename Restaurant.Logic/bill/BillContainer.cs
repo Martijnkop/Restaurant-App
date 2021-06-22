@@ -43,6 +43,7 @@ namespace Restaurant.Logic.bill
             BillDTO dto = dal.FindByTableNumber(tableNumber);
             List<DishDTO> dishes = dal.GetAllOnBill(dto);
             dto.Dishes = dishes;
+            if (dto.TableNumber == 0) return null;
             return ConvertFromDTO(dto);
         }
     }
